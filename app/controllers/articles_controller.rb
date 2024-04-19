@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article]
     @article =Article.new(params.require(:article).permit(:title, :description))
+    @article.user = User.first
     # render plain: @article.inspect
     if @article.save
       flash[:notice] = "Article was Created Successfully."
